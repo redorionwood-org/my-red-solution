@@ -13,36 +13,6 @@ chmod +x ./run-unit-tests.sh  \n
 ./run-unit-tests.sh \n
 ```
 
-## Building distributable for customization
-
-- Configure the bucket name of your target Amazon S3 distribution bucket
-
-```
-export DIST_OUTPUT_BUCKET=my-bucket-name # bucket where customized code will reside
-export SOLUTION_NAME=my-solution-name
-export VERSION=my-version # version number for the customized code
-```
-
-_Note:_ You would have to create an S3 bucket with the prefix 'my-bucket-name-<aws_region>'; aws_region is where you are testing the customized solution. Also, the assets in bucket should be publicly accessible.
-
-- Now build the distributable:
-
-```
-chmod +x ./build-s3-dist.sh \n
-./build-s3-dist.sh $DIST_OUTPUT_BUCKET $SOLUTION_NAME $VERSION \n
-```
-
-- Deploy the distributable to an Amazon S3 bucket in your account. _Note:_ you must have the AWS Command Line Interface installed.
-
-```
-aws s3 cp ./dist/ s3://my-bucket-name-<aws_region>/$SOLUTION_NAME/$VERSION/ --recursive --acl bucket-owner-full-control --profile aws-cred-profile-name \n
-```
-
-- Get the link of the solution template uploaded to your Amazon S3 bucket.
-- Deploy the solution to your account by launching a new AWS CloudFormation stack using the link of the solution template in Amazon S3.
-
----
-
 ## File Structure
 
 ```
