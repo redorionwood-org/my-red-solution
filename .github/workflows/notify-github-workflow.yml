@@ -20,9 +20,9 @@ on:
           - Succeeded
           - Failed
           - Unknown
-      param_x:
-        description: "description of parameter x"
-        default: "1234"
+      pipeline_message:
+        description: "Message details for the pipeline status"
+        default: "No detailed message"
         required: true
 
 jobs:
@@ -33,14 +33,17 @@ jobs:
       - name: Update build status
         env:
           PIPELINE_STATUS: ${{ github.event.inputs.pipeline_status }}
-          PARAM_X: ${{ github.event.inputs.param_x }}
+          PARAM_X: ${{ github.event.inputs.pipeline_message }}
         run: |
-          echo "TODO: Implement processing notification"
           export SOLUTION_NAME=${{ env.SOLUTION_NAME }}
           export PIPELINE_STATUS=${{ env.PIPELINE_STATUS }}
-          export PARAM_X=${{ env.PARAM_X }}
+          export PIPELINE_MESSAGE=${{ env.PIPELINE_MESSAGE }}
 
           echo "Received pipeline_status: $PIPELINE_STATUS"
-          echo "Received param_x: $PARAM_X"
-          echo "DEBUG: Dump env"
-          env
+          echo "Received param_x: $PIPELINE_MESSAGE"
+          if [ "${PIPELINE_STATUS}" = "Failed"]; then
+            exit 1
+            echo "ERROR: pipeline failed."
+          fi
+
+          echo "TODO: Implement processing notification"
