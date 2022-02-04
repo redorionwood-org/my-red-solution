@@ -81,7 +81,6 @@ jobs:
           cd source
           find . -iname '*.html' -exec ../node_modules/pa11y/bin/pa11y.js {} \;
 
-  TODO: fix jshint-check-job errors
   jshint-check-job:
     runs-on: ubuntu-latest
     name: Check source code with JShint
@@ -91,6 +90,9 @@ jobs:
       - name: Install JShint
         run: npm install jshint
       - name: Check with JShint
+        # TODO: enable jshint
+        #    find . -name '*.js' -type f -print | \
+        #    xargs ../node_modules/jshint/bin/jshint
         run: |
           cd source
           echo "TODO: enable jshint"
