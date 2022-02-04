@@ -81,20 +81,22 @@ jobs:
           cd source
           find . -iname '*.html' -exec ../node_modules/pa11y/bin/pa11y.js {} \;
 
-  # TODO: fix jshint-check-job errors
-  # jshint-check-job:
-  #   runs-on: ubuntu-latest
-  #   name: Check source code with JShint
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v2
-  #     - name: Install JShint
-  #       run: npm install jshint
-  #     - name: Check with JShint
-  #       run: |
-  #         cd source
-  #         find . -name '*.js' -type f -print | \
-  #         xargs ../node_modules/jshint/bin/jshint
+  TODO: fix jshint-check-job errors
+  jshint-check-job:
+    runs-on: ubuntu-latest
+    name: Check source code with JShint
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install JShint
+        run: npm install jshint
+      - name: Check with JShint
+        # TODO: enable jshint
+        #    find . -name '*.js' -type f -print | \
+        #    xargs ../node_modules/jshint/bin/jshint
+        run: |
+          cd source
+          echo "TODO: enable jshint"
 
   build-job:
     name: Run build script
@@ -104,7 +106,7 @@ jobs:
         trufflehog-scan-job,
         bandit-check-job,
         pylint-check-job,
-        #jshint-check-job,
+        jshint-check-job,
       ]
     # use a specific environment for this build that has secrets defined
     # and protection rules in place, if needed
