@@ -3,7 +3,7 @@ env:
   REGION: us-east-1
   VERSION: ${{ secrets.VERSION }}
   RELEASE_BRANCH: main
-on: 
+on:
   workflow_run:
     workflows: ["Push Workflow"]
     types: [completed]
@@ -16,7 +16,7 @@ jobs:
       id-token: write
       contents: read
       actions: read
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}    
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -30,7 +30,7 @@ jobs:
           fi
       - name: Set up environment variables
         run: |
-          export WORKFLOW_RUN_ID=${{ github.event.workflow_run.id }} 
+          export WORKFLOW_RUN_ID=${{ github.event.workflow_run.id }}
           export COMMIT_ID=${{ github.event.workflow_run.head_sha }}
           export BRANCH=${{ github.event.workflow_run.head_branch }}
           export WORKFLOW_NAME="${{ github.event.workflow_run.name }}"
@@ -58,4 +58,4 @@ jobs:
       - name: Invoke endpoint
         run: |
           cd deployment
-          python end-workflow-notification.py
+          python end_workflow_notification.py
