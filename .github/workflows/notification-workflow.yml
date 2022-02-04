@@ -15,7 +15,7 @@ on:
       pipeline_status:
         description: "Status of the pipeline part running on AWS"
         required: true
-        default: "Unknown"
+        default: Unknown
         type: choice
         options:
           - Succeeded
@@ -38,6 +38,8 @@ jobs:
         run: |
           echo "TODO: Implement processing notification"
           export SOLUTION_NAME=${{ env.SOLUTION_NAME }}
+          export PIPELINE_STATUS=${{ env.PIPELINE_STATUS }}
+          export PARAM_X=${{ env.PARAM_X }}
 
           echo "Received pipeline_status: $PIPELINE_STATUS"
           echo "Received param_x: $PARAM_X"
