@@ -9,10 +9,21 @@ env:
   SOLUTION_NAME: my-red-solution
 
 on:
-  push:
-    paths-ignore:
-      - "docs/**"
-      - "**/*.md"
+  workflow_dispatch:
+    # Inputs the workflow accepts.
+    inputs:
+      pipeline_status:
+        description: "Status of the pipeline part running on AWS"
+        required: true        
+        default: "Succeeded"
+        type: choice
+        options:
+        - Succeeded
+        - Failed
+      param_x:
+        description: "description of parameter x"
+        default: "1234"
+        required: true
 
 jobs:
 
@@ -21,7 +32,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Update build status
+        env:
+          PIPELINE_STATUS: ${{ github.event.inputs.pipeline_status }}
+          PARAM_X: ${{ github.event.inputs.param_x }}
         run: |
-          export AWS_DEFAULT_REGION=${{ env.REGION }}
           echo "TODO: Implement processing notification"
+          export SOLUTION_NAME=${{ env.SOLUTION_NAME }}
           
+          echo "Received pipeline_status: $PIPELINE_STATUS"
+          echo "Received param_x: $PARAM_X"
+          echo "DEBUG: Dump env"
+          env
