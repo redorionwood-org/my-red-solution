@@ -40,10 +40,10 @@ jobs:
           export PIPELINE_MESSAGE=${{ env.PIPELINE_MESSAGE }}
 
           echo "Received pipeline_status: $PIPELINE_STATUS"
-          echo "Received param_x: $PIPELINE_MESSAGE"
+          echo "Received pipeline_message: $PIPELINE_MESSAGE"
           if [ "${PIPELINE_STATUS}" = "Failed"]; then
-            exit 1
             echo "ERROR: pipeline failed."
+            exit 1
           fi
 
           echo "TODO: Implement processing notification"
