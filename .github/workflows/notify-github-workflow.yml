@@ -1,7 +1,7 @@
 # Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 # SPDX-License-Identifier: Apache-2.0
 
-name: Notification Workflow
+name: Notify GitHub Workflow
 
 # global environment variables to all jobs
 env:
@@ -10,7 +10,6 @@ env:
 
 on:
   workflow_dispatch:
-    # Inputs the workflow accepts.
     inputs:
       pipeline_status:
         description: "Status of the pipeline part running on AWS"
