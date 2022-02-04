@@ -91,9 +91,6 @@ jobs:
       - name: Install JShint
         run: npm install jshint
       - name: Check with JShint
-        # TODO: enable jshint
-        #    find . -name '*.js' -type f -print | \
-        #    xargs ../node_modules/jshint/bin/jshint
         run: |
           cd source
           echo "TODO: enable jshint"
