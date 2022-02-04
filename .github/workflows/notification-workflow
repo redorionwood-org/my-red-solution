@@ -1,0 +1,27 @@
+# Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+# SPDX-License-Identifier: Apache-2.0
+
+name: Notification Workflow
+
+# global environment variables to all jobs
+env:
+  SOLUTION_ORG: aws-solutions
+  SOLUTION_NAME: my-red-solution
+
+on:
+  push:
+    paths-ignore:
+      - "docs/**"
+      - "**/*.md"
+
+jobs:
+
+  notification-job:
+    name: Notification Job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update build status
+        run: |
+          export AWS_DEFAULT_REGION=${{ env.REGION }}
+          echo "TODO: Implement processing notification"
+          
