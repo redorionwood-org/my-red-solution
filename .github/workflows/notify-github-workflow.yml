@@ -33,7 +33,7 @@ jobs:
       - name: Update build status
         env:
           PIPELINE_STATUS: ${{ github.event.inputs.pipeline_status }}
-          PARAM_X: ${{ github.event.inputs.pipeline_message }}
+          PIPELINE_MESSAGE: ${{ github.event.inputs.pipeline_message }}
         run: |
           export SOLUTION_NAME=${{ env.SOLUTION_NAME }}
           export PIPELINE_STATUS=${{ env.PIPELINE_STATUS }}
