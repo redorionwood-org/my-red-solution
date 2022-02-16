@@ -44,7 +44,7 @@ jobs:
 
           echo "Received pipeline_status: $PIPELINE_STATUS"
           echo "Received pipeline_message: $PIPELINE_MESSAGE"
-          if [ "${PIPELINE_STATUS}" = "Failed"]; then
+          if [ "${PIPELINE_STATUS}" = "Failed" ]; then
             echo "ERROR: pipeline failed."
             exit 1
           fi
