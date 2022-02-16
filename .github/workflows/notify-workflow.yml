@@ -49,13 +49,22 @@ jobs:
             export PIPELINE_TYPE="feature"
           fi
           echo PIPELINE_TYPE=$PIPELINE_TYPE >> $GITHUB_ENV
-      - name: Configure AWS credentials
+      #
+      # NOTE: next two actions are stubbed for testing
+      #
+      # - name: Configure AWS credentials
+      #   uses: aws-actions/configure-aws-credentials@v1
+      #   with:
+      #     role-to-assume: ${{ secrets.NOTIFY_ROLE }}
+      #     aws-region: ${{ env.REGION }}
+      #     role-duration-seconds: 900
+      - name: Configure AWS credentials - Stub
         uses: aws-actions/configure-aws-credentials@v1
         with:
           role-to-assume: ${{ secrets.NOTIFY_ROLE }}
           aws-region: ${{ env.REGION }}
           role-duration-seconds: 900
-      - name: Invoke endpoint
+      - name: Invoke endpoint - Stub
         run: |
           cd deployment
-          python end_workflow_notification.py
+          python end_workflow_notification.py --stub
