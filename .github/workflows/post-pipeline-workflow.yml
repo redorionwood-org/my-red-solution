@@ -37,7 +37,7 @@ jobs:
         run: |
           export SOLUTION_NAME=${{ env.SOLUTION_NAME }}
           export PIPELINE_STATUS=${{ env.PIPELINE_STATUS }}
-          export PIPELINE_MESSAGE=${{ env.PIPELINE_MESSAGE }}
+          export PIPELINE_MESSAGE="${{ env.PIPELINE_MESSAGE }}"
 
           echo "Received pipeline_status: $PIPELINE_STATUS"
           echo "Received pipeline_message: $PIPELINE_MESSAGE"
