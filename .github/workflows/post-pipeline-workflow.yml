@@ -35,8 +35,11 @@ jobs:
           PIPELINE_STATUS: ${{ github.event.inputs.pipeline_status }}
           PIPELINE_MESSAGE: ${{ github.event.inputs.pipeline_message }}
         run: |
-          export SOLUTION_NAME=${{ env.SOLUTION_NAME }}
-          export PIPELINE_STATUS=${{ env.PIPELINE_STATUS }}
+          echo "SOLUTION_NAME ${{ env.SOLUTION_NAME }}"
+          echo "PIPELINE_STATUS ${{ env.PIPELINE_STATUS }}"
+          echo "PIPELINE_MESSAGE ${{ env.PIPELINE_MESSAGE }}"
+          export SOLUTION_NAME="${{ env.SOLUTION_NAME }}"
+          export PIPELINE_STATUS="${{ env.PIPELINE_STATUS }}"
           export PIPELINE_MESSAGE="${{ env.PIPELINE_MESSAGE }}"
 
           echo "Received pipeline_status: $PIPELINE_STATUS"
